@@ -69,7 +69,18 @@ const createSlider = () => {
    document.querySelector('.main').style.display = 'block';
    // hide image aria
    imagesArea.style.display = 'none';
-   const duration = document.getElementById('duration').value || 1000;
+
+   //handle duration input and negative input values
+   let duration = document.getElementById('duration').value;
+   duration = Number(duration);
+   if (duration < 0) {
+      alert('Negative timing is not possible');
+      sliderContainer.style.display = 'none';
+   } else if (!duration) {
+      duration = 1000;
+   }
+
+   //  const duration = document.getElementById('duration').value || 1000;
    //fixed typo of duration in the html file: doration ==> duration
 
    sliders.forEach(slide => {
