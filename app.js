@@ -36,20 +36,19 @@ const getImages = query => {
 };
 
 let slideIndex = 0;
-//this select item should be made as toggler
+
 const selectItem = (event, img) => {
-   let element = event.target; // img tag
-   //  element.classList.add('added');
+   let element = event.target;
+   element.classList.toggle('added'); //image select toggler
 
    let item = sliders.indexOf(img);
-   console.log(item);
-
    if (item === -1) {
       sliders.push(img);
    } else {
-      alert('Hey, Already added !');
+      sliders.splice(item, 1); // on unselect it's removed from the array
    }
 };
+
 var timer;
 const createSlider = () => {
    // check slider image length
@@ -72,7 +71,7 @@ const createSlider = () => {
    // hide image aria
    imagesArea.style.display = 'none';
 
-   //handle duration input and negative input values
+   //handled duration input and negative input values
    let duration = Number(document.getElementById('duration').value);
    if (duration < 0) {
       alert('Negative timing is not possible');
@@ -143,11 +142,9 @@ sliderBtn.addEventListener('click', function () {
 });
 
 //Enter key press search functionality
-
 document.getElementById('search').addEventListener('keyup', event => {
    event.preventDefault();
    if (event.code === 'Enter') {
-      console.log('ENTER');
       searchBtn.click();
    }
 });
