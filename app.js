@@ -41,6 +41,7 @@ const selectItem = (event, img) => {
    element.classList.add('added');
 
    let item = sliders.indexOf(img);
+   //console.log(item); //selected == -1 // >0 else
    if (item === -1) {
       sliders.push(img);
    } else {
@@ -69,6 +70,8 @@ const createSlider = () => {
    // hide image aria
    imagesArea.style.display = 'none';
    const duration = document.getElementById('duration').value || 1000;
+   //fixed typo of duration in the html file: doration ==> duration
+
    sliders.forEach(slide => {
       let item = document.createElement('div');
       item.className = 'slider-item';
@@ -113,7 +116,13 @@ searchBtn.addEventListener('click', function () {
    document.querySelector('.main').style.display = 'none';
    clearInterval(timer);
    const search = document.getElementById('search');
-   getImages(search.value);
+   //handled empty search
+   const searchTerm = search.value.trim();
+   if (searchTerm) {
+      getImages(searchTerm);
+   } else {
+      alert('Please write the image type in the box');
+   }
    sliders.length = 0;
 });
 
