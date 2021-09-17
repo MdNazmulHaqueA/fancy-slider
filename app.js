@@ -36,12 +36,14 @@ const getImages = query => {
 };
 
 let slideIndex = 0;
+//this select item should be made as toggler
 const selectItem = (event, img) => {
-   let element = event.target;
-   element.classList.add('added');
+   let element = event.target; // img tag
+   //  element.classList.add('added');
 
    let item = sliders.indexOf(img);
-   //console.log(item); //selected == -1 // >0 else
+   console.log(item);
+
    if (item === -1) {
       sliders.push(img);
    } else {
@@ -71,8 +73,7 @@ const createSlider = () => {
    imagesArea.style.display = 'none';
 
    //handle duration input and negative input values
-   let duration = document.getElementById('duration').value;
-   duration = Number(duration);
+   let duration = Number(document.getElementById('duration').value);
    if (duration < 0) {
       alert('Negative timing is not possible');
       sliderContainer.style.display = 'none';
@@ -139,4 +140,14 @@ searchBtn.addEventListener('click', function () {
 
 sliderBtn.addEventListener('click', function () {
    createSlider();
+});
+
+//Enter key press search functionality
+
+document.getElementById('search').addEventListener('keyup', event => {
+   event.preventDefault();
+   if (event.code === 'Enter') {
+      console.log('ENTER');
+      searchBtn.click();
+   }
 });
