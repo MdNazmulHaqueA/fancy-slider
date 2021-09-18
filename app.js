@@ -19,6 +19,7 @@ const showImages = images => {
    gallery.innerHTML = '';
    if (images.length !== 0) {
       imagesArea.style.display = 'block';
+      document.getElementById('not-found-images').classList.add('d-none');
       // show gallery title
       galleryHeader.style.display = 'flex';
       images.forEach(image => {
