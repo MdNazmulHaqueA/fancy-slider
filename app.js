@@ -14,7 +14,7 @@ const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 
 // show images
 const showImages = images => {
-   //Added feature to handle not found image
+   //Added feature to handle not found image and UI minimalism
    gallery.innerHTML = '';
    if (images.length !== 0) {
       imagesArea.style.display = 'block';
@@ -51,7 +51,7 @@ const selectItem = (event, img) => {
    if (item === -1) {
       sliders.push(img);
    } else {
-      sliders.splice(item, 1); // on unselect it's removed from the array
+      sliders.splice(item, 1); // on unselect it's removed from the sliders array
    }
 };
 
@@ -147,9 +147,15 @@ sliderBtn.addEventListener('click', function () {
    createSlider();
 });
 
-//Enter key press search functionality
+//key press search functionality - hiding existing UI while pressing key for search and on Enter key pressed
 document.getElementById('search').addEventListener('keyup', event => {
    event.preventDefault();
+
+   //empty section image while pressing keys on search box
+   imagesArea.style.display = 'none';
+   //empty section main while pressing keys on search box
+   document.querySelector('.main').style.display = 'none';
+
    if (event.code === 'Enter') {
       searchBtn.click();
    }
