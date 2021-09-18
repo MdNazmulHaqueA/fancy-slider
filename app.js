@@ -14,6 +14,7 @@ const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 
 // show images
 const showImages = images => {
+   // toggleSpinner();
    //Added feature to handle not found image and UI minimalism
    gallery.innerHTML = '';
    if (images.length !== 0) {
@@ -26,9 +27,11 @@ const showImages = images => {
          div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
          gallery.appendChild(div);
       });
+      toggleSpinner();
+   } else {
+      toggleSpinner();
+      document.getElementById('not-found-images').classList.remove('d-none');
    }
-   toggleSpinner();
-   gallery.innerHTML += `<h1 class="text-danger"> No image found based on your query. Please try again! </h1>`;
 };
 
 const getImages = query => {
